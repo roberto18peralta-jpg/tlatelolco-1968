@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2 de Octubre de 1968 · Repositorio digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     VARIABLES
+     ============================================================ */
+  :root {
+    --negro: #0a0a0a;
+    --carbon: #141414;
+    --grafito: #1e1e1e;
+    --hueso: #f5f2eb;
+    --crema: #ebe6da;
+    --rojo: #b31217;
+    --rojo-vivo: #e01e26;
+    --rojo-profundo: #6d0a0e;
+    --gris-texto: #6b6b6b;
+    --gris-linea: #2a2a2a;
+    --sombra: 0 20px 60px rgba(0,0,0,0.5);
+    --transicion: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--negro);
+    color: var(--hueso);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--rojo); color: var(--hueso); }
+
+  /* ============================================================
+     NAVEGACIÓN STICKY
+     ============================================================ */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,10,0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: padding 0.4s var(--transicion);
+  }
+  .nav.movido { padding: 14px 40px; }
+
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 1.05em;
+    letter-spacing: -0.5px;
+    color: var(--hueso);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-logo::before {
+    content: "";
+    width: 10px; height: 10px;
+    background: var(--rojo-vivo);
+    border-radius: 50%;
+    box-shadow: 0 0 20px var(--rojo-vivo);
+    animation: pulso 2s infinite;
+  }
+  @keyframes pulso {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--hueso);
+    text-decoration: none;
+    font-size: 0.82em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0; height: 1px;
+    background: var(--rojo-vivo);
+    transition: width 0.4s var(--transicion);
+  }
+  .nav-links a:hover { color: var(--rojo-vivo); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero {
+    min-height: 100vh;
+    padding: 140px 40px 80px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -20%; right: -15%;
+    width: 70vw; height: 70vw;
+    background: radial-gradient(circle, rgba(179,18,23,0.25) 0%, transparent 65%);
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: -30%; left: -10%;
+    width: 50vw; height: 50vw;
+    background: radial-gradient(circle, rgba(179,18,23,0.1) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-contenido {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-etiqueta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.72em;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rojo-vivo);
+    margin-bottom: 40px;
+    padding: 8px 16px;
+    border: 1px solid var(--rojo);
+    border-radius: 100px;
+    font-weight: 500;
+    opacity: 0;
+    animation: fadeUp 1s 0.2s var(--transicion) forwards;
+  }
+  .hero-etiqueta::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--rojo-vivo);
+    border-radius: 50%;
+  }
+
+  .hero-titulo {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(3.5em, 11vw, 9.5em);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 1.2s 0.4s var(--transicion) forwards;
+  }
+  .hero-titulo .num {
+    font-weight: 900;
+    font-style: italic;
+    color: var(--rojo-vivo);
+    display: inline-block;
+  }
+  .hero-titulo .linea {
+    display: block;
+    overflow: hidden;
+  }
+
+  .hero-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    opacity: 0;
+    animation: fadeUp 1s 0.8s var(--transicion) forwards;
+  }
+  .hero-cita {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.1em, 1.5vw, 1.4em);
+    line-height: 1.5;
+    font-weight: 300;
+    color: var(--crema);
+  }
+  .hero-cita em { color: var(--rojo-vivo); font-style: italic; }
+  .hero-autor {
+    font-size: 0.8em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    margin-top: 16px;
+    display: block;
+    font-style: normal;
+  }
+
+  .hero-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .stat {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2.4em;
+    font-weight: 900;
+    font-style: italic;
+    color: var(--rojo-vivo);
+    line-height: 1;
+    min-width: 100px;
+  }
+  .stat-txt {
+    font-size: 0.8em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============================================================
+     SECCIONES
+     ============================================================ */
+  .seccion {
+    padding: 120px 40px;
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .seccion-encabezado {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 60px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .seccion-num {
+    font-family: 'Fraunces', serif;
+    font-size: 0.9em;
+    font-weight: 400;
+    color: var(--rojo-vivo);
+    letter-spacing: 2px;
+  }
+  .seccion-titulo {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8em, 4vw, 3em);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    flex: 1;
+  }
+  .seccion-titulo strong {
+    font-weight: 900;
+    font-style: italic;
+    color: var(--rojo-vivo);
+  }
+
+  /* ============================================================
+     TARJETAS DE RECURSOS (multimedia)
+     ============================================================ */
+  .grid-multimedia {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .tarjeta-multimedia {
+    background: linear-gradient(160deg, var(--grafito) 0%, var(--carbon) 100%);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--hueso);
+    transition: transform 0.5s var(--transicion), border-color 0.3s;
+    display: flex;
+    flex-direction: column;
+    min-height: 340px;
+  }
+  .tarjeta-multimedia::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 100% 0%, rgba(179,18,23,0.18) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  .tarjeta-multimedia:hover {
+    transform: translateY(-6px);
+    border-color: rgba(179,18,23,0.5);
+  }
+  .tarjeta-multimedia:hover::before { opacity: 1; }
+
+  .tarjeta-tipo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.68em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rojo-vivo);
+    font-weight: 600;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .tarjeta-tipo::before {
+    content: "";
+    width: 20px; height: 1px;
+    background: var(--rojo-vivo);
+  }
+
+  .tarjeta-titulo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.6em;
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: -0.01em;
+  }
+  .tarjeta-titulo em { color: var(--rojo-vivo); font-style: italic; }
+
+  .tarjeta-desc {
+    font-size: 0.88em;
+    line-height: 1.6;
+    color: var(--gris-texto);
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+    flex: 1;
+  }
+
+  .tarjeta-accion {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.78em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--hueso);
+    position: relative;
+    z-index: 1;
+    transition: gap 0.3s var(--transicion), color 0.3s;
+  }
+  .tarjeta-accion .flecha {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--rojo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1em;
+    transition: transform 0.4s var(--transicion);
+  }
+  .tarjeta-multimedia:hover .tarjeta-accion { gap: 18px; color: var(--rojo-vivo); }
+  .tarjeta-multimedia:hover .tarjeta-accion .flecha { transform: translateX(4px) rotate(-45deg); }
+
+  /* ============================================================
+     TABLA BIBLIOGRÁFICA · diseño editorial
+     ============================================================ */
+  .bibliografia {
+    display: flex;
+    flex-direction: column;
+  }
+  .libro {
+    display: grid;
+    grid-template-columns: 60px 1fr 180px 140px;
+    gap: 32px;
+    align-items: center;
+    padding: 32px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    text-decoration: none;
+    color: var(--hueso);
+    transition: padding 0.4s var(--transicion), background 0.4s;
+    position: relative;
+  }
+  .libro::before {
+    content: "";
+    position: absolute;
+    left: -40px; right: -40px;
+    top: 0; bottom: 0;
+    background: rgba(179,18,23,0.04);
+    opacity: 0;
+    transition: opacity 0.4s;
+    border-radius: 12px;
+  }
+  .libro:hover { padding-left: 20px; }
+  .libro:hover::before { opacity: 1; }
+
+  .libro-num {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4em;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--rojo-vivo);
+    opacity: 0.6;
+  }
+  .libro-titulo {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.1em, 1.6vw, 1.4em);
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .libro-autor {
+    font-size: 0.85em;
+    color: var(--gris-texto);
+    letter-spacing: 0.5px;
+  }
+  .libro-anio {
+    font-size: 0.85em;
+    color: var(--gris-texto);
+    text-align: right;
+    letter-spacing: 2px;
+  }
+  .libro-link {
+    font-size: 0.72em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rojo-vivo);
+    font-weight: 600;
+    text-align: right;
+    transition: transform 0.3s;
+  }
+  .libro:hover .libro-link { transform: translateX(6px); }
+
+  /* ============================================================
+     GRID DE ARCHIVOS
+     ============================================================ */
+  .grid-archivos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .archivo {
+    background: var(--carbon);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 28px;
+    text-decoration: none;
+    color: var(--hueso);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: all 0.4s var(--transicion);
+    position: relative;
+    overflow: hidden;
+  }
+  .archivo::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--rojo-vivo);
+    transition: width 0.5s var(--transicion);
+  }
+  .archivo:hover {
+    border-color: rgba(179,18,23,0.4);
+    transform: translateY(-4px);
+  }
+  .archivo:hover::after { width: 100%; }
+
+  .archivo-icono {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba(179,18,23,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1em;
+    color: var(--rojo-vivo);
+    font-weight: 700;
+    font-family: 'Fraunces', serif;
+  }
+  .archivo-nombre {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15em;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .archivo-desc {
+    font-size: 0.82em;
+    color: var(--gris-texto);
+    line-height: 1.55;
+  }
+  .archivo-flecha {
+    font-size: 0.72em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rojo-vivo);
+    font-weight: 600;
+    margin-top: auto;
+    padding-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.3s;
+  }
+  .archivo:hover .archivo-flecha { gap: 14px; }
+
+  /* ============================================================
+     DOCUMENTOS ESPECÍFICOS
+     ============================================================ */
+  .grid-documentos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .documento {
+    background: linear-gradient(135deg, rgba(179,18,23,0.08) 0%, transparent 100%);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 24px;
+    text-decoration: none;
+    color: var(--hueso);
+    transition: all 0.4s var(--transicion);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .documento:hover {
+    background: linear-gradient(135deg, rgba(179,18,23,0.18) 0%, transparent 100%);
+    border-color: rgba(179,18,23,0.4);
+    transform: scale(1.02);
+  }
+  .documento-titulo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05em;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+  .documento-meta {
+    font-size: 0.78em;
+    color: var(--gris-texto);
+    line-height: 1.5;
+  }
+
+  /* ============================================================
+     CIERRE / FOOTER
+     ============================================================ */
+  .cierre {
+    padding: 140px 40px 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--negro) 0%, #1a0305 100%);
+  }
+  .cierre::before {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw; height: 80vw;
+    max-width: 900px; max-height: 900px;
+    background: radial-gradient(circle, rgba(179,18,23,0.2) 0%, transparent 60%);
+    filter: blur(40px);
+    pointer-events: none;
+  }
+  .cierre-contenido {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .cierre-cita {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.4em, 3.5vw, 2.6em);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    color: var(--crema);
+    margin-bottom: 30px;
+  }
+  .cierre-cita em {
+    color: var(--rojo-vivo);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .cierre-autor {
+    font-size: 0.85em;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    margin-bottom: 70px;
+  }
+  .cierre-autor strong { color: var(--hueso); font-weight: 500; }
+
+  .cierre-lema {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2em, 6vw, 4.5em);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--hueso);
+    margin-bottom: 20px;
+  }
+  .cierre-lema em {
+    color: var(--rojo-vivo);
+    font-style: italic;
+  }
+
+  .cierre-llamado {
+    font-size: 0.85em;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rojo-vivo);
+    font-weight: 500;
+    margin-top: 30px;
+  }
+
+  .footer-creditos {
+    margin-top: 90px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.72em;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+  }
+
+  /* ============================================================
+     SCROLL REVEAL
+     ============================================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s var(--transicion), transform 1s var(--transicion);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ============================================================
+     RESPONSIVO
+     ============================================================ */
+  @media (max-width: 900px) {
+    .nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 120px 24px 60px; }
+    .hero-meta { grid-template-columns: 1fr; gap: 40px; }
+    .seccion { padding: 80px 24px; }
+    .libro {
+      grid-template-columns: 40px 1fr;
+      gap: 16px;
+    }
+    .libro-autor, .libro-anio, .libro-link {
+      grid-column: 2;
+      text-align: left;
+    }
+    .libro-anio { font-size: 0.8em; }
+    .cierre { padding: 90px 24px 60px; }
+  }
+  @media (max-width: 500px) {
+    .hero-titulo { font-size: 3em; }
+    .stat-num { font-size: 1.8em; min-width: 70px; }
+    .seccion-encabezado { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVEGACIÓN
+     ============================================================ -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-logo">1968 · Tlatelolco</a>
+  <ul class="nav-links">
+    <li><a href="#multimedia">Multimedia</a></li>
+    <li><a href="#bibliografia">Bibliografía</a></li>
+    <li><a href="#archivos">Archivos</a></li>
+    <li><a href="#documentos">Documentos</a></li>
+  </ul>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<header class="hero" id="top">
+  <div class="hero-contenido">
+    <div class="hero-etiqueta">Repositorio digital · Memoria histórica</div>
+
+    <h1 class="hero-titulo">
+      <span class="linea">2 de octubre</span>
+      <span class="linea">de <span class="num">1968</span></span>
+    </h1>
+
+    <div class="hero-meta">
+      <div class="hero-cita">
+        "La oscuridad engendra la violencia y la violencia pide oscuridad para cuajar el crimen. Por eso el dos de octubre aguardó hasta la noche para que nadie viera la mano que empuñaba el arma, sino sólo su <em>efecto de relámpago</em>."
+        <span class="hero-autor">— Rosario Castellanos, Memorial de Tlatelolco</span>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">10K</span>
+          <span class="stat-txt">Personas en la plaza</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">+1K</span>
+          <span class="stat-txt">Detenidos reportados</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">+2H</span>
+          <span class="stat-txt">Duración de la masacre</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     SECCIÓN 1 · MULTIMEDIA
+     ============================================================ -->
+<section class="seccion" id="multimedia">
+  <div class="seccion-encabezado reveal">
+    <span class="seccion-num">01 —</span>
+    <h2 class="seccion-titulo">Recursos <strong>multimedia</strong></h2>
+  </div>
+
+  <div class="grid-multimedia">
+    <a href="https://www.youtube.com/watch?v=9gjXQieCRXI" target="_blank" rel="noopener" class="tarjeta-multimedia reveal">
+      <span class="tarjeta-tipo">Película · 1989</span>
+      <h3 class="tarjeta-titulo">Rojo <em>amanecer</em></h3>
+      <p class="tarjeta-desc">Dirigida por Jorge Fons. Drama que retrata la matanza de Tlatelolco desde la perspectiva de una familia de clase media que vive en el edificio Chihuahua.</p>
+      <span class="tarjeta-accion">
+        Ver en YouTube
+        <span class="flecha">→</span>
+      </span>
+    </a>
+
+    <a href="https://www.youtube.com/watch?v=ZaJFwtsjV0c" target="_blank" rel="noopener" class="tarjeta-multimedia reveal">
+      <span class="tarjeta-tipo">Película · Drama histórico</span>
+      <h3 class="tarjeta-titulo">Tlatelolco <em>verano del 68</em></h3>
+      <p class="tarjeta-desc">Dirigida por Carlos Bolado. Reconstruye el movimiento estudiantil y la masacre a través de la historia de dos jóvenes de clases sociales opuestas que se enamoran.</p>
+      <span class="tarjeta-accion">
+        Ver en YouTube
+        <span class="flecha">→</span>
+      </span>
+    </a>
+
+    <a href="https://www.facebook.com/share/1DfrY7rpCm/" target="_blank" rel="noopener" class="tarjeta-multimedia reveal">
+      <span class="tarjeta-tipo">Testimonio · Redes sociales</span>
+      <h3 class="tarjeta-titulo">Testimonio <em>familiar</em></h3>
+      <p class="tarjeta-desc">Relato personal de un sobrino a su tío, sobreviviente del 2 de octubre. Testimonio íntimo sobre el impacto familiar y la memoria viva de la masacre.</p>
+      <span class="tarjeta-accion">
+        Ver en Facebook
+        <span class="flecha">→</span>
+      </span>
+    </a>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECCIÓN 2 · BIBLIOGRAFÍA
+     ============================================================ -->
+<section class="seccion" id="bibliografia">
+  <div class="seccion-encabezado reveal">
+    <span class="seccion-num">02 —</span>
+    <h2 class="seccion-titulo">Fuentes <strong>bibliográficas</strong></h2>
+  </div>
+
+  <div class="bibliografia">
+    <a href="https://annas-archive.gd/" target="_blank" rel="noopener" class="libro reveal">
+      <span class="libro-num">01</span>
+      <span class="libro-titulo">La noche de Tlatelolco</span>
+      <span class="libro-autor">Elena Poniatowska</span>
+      <span class="libro-anio">1971</span>
+      <span class="libro-link">Consultar →</span>
+    </a>
+
+    <a href="https://sv.welib.org/" target="_blank" rel="noopener" class="libro reveal">
+      <span class="libro-num">02</span>
+      <span class="libro-titulo">Los días y los años</span>
+      <span class="libro-autor">Luis González de Alba</span>
+      <span class="libro-anio">1971</span>
+      <span class="libro-link">Consultar →</span>
+    </a>
+
+    <a href="https://es.wikipedia.org/wiki/Memorial_de_Tlatelolco" target="_blank" rel="noopener" class="libro reveal">
+      <span class="libro-num">03</span>
+      <span class="libro-titulo">Memorial de Tlatelolco</span>
+      <span class="libro-autor">Rosario Castellanos</span>
+      <span class="libro-anio">1971</span>
+      <span class="libro-link">Texto completo →</span>
+    </a>
+
+    <a href="https://search.worldcat.org/" target="_blank" rel="noopener" class="libro reveal">
+      <span class="libro-num">04</span>
+      <span class="libro-titulo">Parte de guerra, Tlatelolco 1968</span>
+      <span class="libro-autor">Julio Scherer y Carlos Monsiváis</span>
+      <span class="libro-anio">1999</span>
+      <span class="libro-link">Consultar →</span>
+    </a>
+
+    <a href="https://search.worldcat.org/" target="_blank" rel="noopener" class="libro reveal">
+      <span class="libro-num">05</span>
+      <span class="libro-titulo">Días de guardar</span>
+      <span class="libro-autor">Carlos Monsiváis</span>
+      <span class="libro-anio">1970</span>
+      <span class="libro-link">Consultar →</span>
+    </a>
+
+    <a href="https://68.colmex.mx/" target="_blank" rel="noopener" class="libro reveal">
+      <span class="libro-num">06</span>
+      <span class="libro-titulo">El movimiento estudiantil en México: 1968</span>
+      <span class="libro-autor">Varios autores</span>
+      <span class="libro-anio">1968</span>
+      <span class="libro-link">Consultar →</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECCIÓN 3 · ARCHIVOS
+     ============================================================ -->
+<section class="seccion" id="archivos">
+  <div class="seccion-encabezado reveal">
+    <span class="seccion-num">03 —</span>
+    <h2 class="seccion-titulo">Archivos y <strong>repositorios</strong></h2>
+  </div>
+
+  <div class="grid-archivos">
+    <a href="https://68.colmex.mx/" target="_blank" rel="noopener" class="archivo reveal">
+      <span class="archivo-icono">M68</span>
+      <span class="archivo-nombre">Colmex — M68</span>
+      <span class="archivo-desc">30,809 documentos del movimiento estudiantil. Volantes, comunicados, listas y fotografías.</span>
+      <span class="archivo-flecha">Explorar <span>→</span></span>
+    </a>
+
+    <a href="https://www.ahunam.unam.mx/" target="_blank" rel="noopener" class="archivo reveal">
+      <span class="archivo-icono">UN</span>
+      <span class="archivo-nombre">AHUNAM · UNAM</span>
+      <span class="archivo-desc">118+ resultados sobre el 68. Volantes, carteles, fotografías y documentos del CNH.</span>
+      <span class="archivo-flecha">Explorar <span>→</span></span>
+    </a>
+
+    <a href="https://nsarchive2.gwu.edu/" target="_blank" rel="noopener" class="archivo reveal">
+      <span class="archivo-icono">NS</span>
+      <span class="archivo-nombre">National Security Archive</span>
+      <span class="archivo-desc">Documentos desclasificados de EE.UU. Informes de inteligencia y fotografías.</span>
+      <span class="archivo-flecha">Explorar <span>→</span></span>
+    </a>
+
+    <a href="https://www.gob.mx/agn" target="_blank" rel="noopener" class="archivo reveal">
+      <span class="archivo-icono">AG</span>
+      <span class="archivo-nombre">Archivo General de la Nación</span>
+      <span class="archivo-desc">410 expedientes, documentos y fotografías incorporados a la Colección M68.</span>
+      <span class="archivo-flecha">Explorar <span>→</span></span>
+    </a>
+
+    <a href="https://memoricamexico.gob.mx/" target="_blank" rel="noopener" class="archivo reveal">
+      <span class="archivo-icono">MX</span>
+      <span class="archivo-nombre">Memórica México</span>
+      <span class="archivo-desc">Colección digital con crónicas, fotografías y documentos sobre la matanza.</span>
+      <span class="archivo-flecha">Explorar <span>→</span></span>
+    </a>
+
+    <a href="https://dossiers-bibliotheque.sciencespo.fr/" target="_blank" rel="noopener" class="archivo reveal">
+      <span class="archivo-icono">SP</span>
+      <span class="archivo-nombre">SciencesPo · Dossiers</span>
+      <span class="archivo-desc">Dossier documental completo con documentos y análisis sobre la masacre.</span>
+      <span class="archivo-flecha">Explorar <span>→</span></span>
+    </a>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECCIÓN 4 · DOCUMENTOS ESPECÍFICOS
+     ============================================================ -->
+<section class="seccion" id="documentos">
+  <div class="seccion-encabezado reveal">
+    <span class="seccion-num">04 —</span>
+    <h2 class="seccion-titulo">Listas y <strong>documentos</strong></h2>
+  </div>
+
+  <div class="grid-documentos">
+    <a href="https://68.colmex.mx/" target="_blank" rel="noopener" class="documento reveal">
+      <span class="documento-titulo">Lista oficial de muertos y heridos</span>
+      <span class="documento-meta">Procuraduría del Distrito · 4 de octubre de 1968</span>
+    </a>
+
+    <a href="https://68.colmex.mx/" target="_blank" rel="noopener" class="documento reveal">
+      <span class="documento-titulo">Nombres de 35 estudiantes con desistimiento de acción penal</span>
+      <span class="documento-meta">Documento oficial · 12 de noviembre de 1968</span>
+    </a>
+
+    <a href="https://68.colmex.mx/" target="_blank" rel="noopener" class="documento reveal">
+      <span class="documento-titulo">Nombres de 113 detenidos en Tlatelolco</span>
+      <span class="documento-meta">Lista oficial de personas detenidas</span>
+    </a>
+
+    <a href="https://68.colmex.mx/" target="_blank" rel="noopener" class="documento reveal">
+      <span class="documento-titulo">Nombres de 27 personas muertas el 2 de octubre</span>
+      <span class="documento-meta">Lista oficial de víctimas mortales</span>
+    </a>
+
+    <a href="https://www.ahunam.unam.mx/" target="_blank" rel="noopener" class="documento reveal">
+      <span class="documento-titulo">Parte oficial de la Secretaría de la Defensa</span>
+      <span class="documento-meta">Documento con croquis de los edificios · 1968</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============================================================
+     CIERRE
+     ============================================================ -->
+<footer class="cierre">
+  <div class="cierre-contenido">
+    <p class="cierre-cita reveal">
+      "Recuerdo, recordamos. Ésta es nuestra manera de ayudar a que amanezca sobre tantas <em>conciencias mancilladas</em>."
+    </p>
+    <p class="cierre-autor reveal">— <strong>Rosario Castellanos</strong> · Memorial de Tlatelolco</p>
+
+    <h2 class="cierre-lema reveal">2 de octubre <em>no se olvida</em></h2>
+    <p class="cierre-llamado reveal">No olvides esta fecha, universitario.</p>
+
+    <p class="footer-creditos reveal">
+      Repositorio digital · Edición conmemorativa · Material sin fines de lucro
+    </p>
+  </div>
+</footer>
+
+<!-- ============================================================
+     SCRIPT · SCROLL REVEAL + NAV
+     ============================================================ -->
+<script>
+  // Nav compacta al hacer scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) nav.classList.add('movido');
+    else nav.classList.remove('movido');
+  });
+
+  // Scroll reveal con IntersectionObserver
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
